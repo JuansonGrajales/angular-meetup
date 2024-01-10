@@ -119,7 +119,7 @@ ngOnDestroy
 - Last lifecycle hook
 ----
 
-## Terms to Understand {#terms-to-understand}
+<h2 id="terms-to-understand">Terms to Understand</h2>
 1. **Projected content**: Is the HTML content which replaces the `<ng-content>` directive in child component
 
 For example:
