@@ -4,7 +4,7 @@ tasks:
     init: npm install -g @angular/cli@13
     command: |
       cd /workspace/angular-meetup/components/lifecycle
-      ng add @angular/material --defaults
+      ng add @angular/material@13.3.9 --defaults
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 # ports:
