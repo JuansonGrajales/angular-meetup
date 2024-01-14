@@ -1,6 +1,6 @@
-
-html, body {height:100%}
-body {
-    margin: 10;
-    padding: 100;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
