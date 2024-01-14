@@ -1,16 +1,16 @@
-<mat-card>
+<mat-card class="full-width">
     <mat-card-title>Form</mat-card-title>
     <mat-card-content>
         <div class="form-container">
-            <mat-form-field appearance="fill">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>username</mat-label>
                 <input matInput placeholder="username">
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>age</mat-label>
                 <input placeholder="age" matInput>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>email</mat-label>
                 <input placeholder="email" matInput>
             </mat-form-field>
@@ -18,7 +18,20 @@
         </div>
     </mat-card-content>
 </mat-card>
-
+<br>
+<mat-card class="full-width">
+    <mat-card-content>
+        <div class="search-container">
+            <button mat-mini-fab color="accent">
+                <mat-icon>search</mat-icon>
+            </button>
+            <mat-form-field>
+                <mat-label>Search by Name</mat-label>
+                <input matInput placeholder="Ex. Maria" value="">
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+  </mat-card>
 <p>The text entered is: {{ value }}</p>
 <ng-content></ng-content>
 
