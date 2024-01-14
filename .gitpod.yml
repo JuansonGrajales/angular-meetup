@@ -8,6 +8,7 @@ tasks:
       nvm use 14 && 
       npm install -g @angular/cli@13 &&
       cd ./components/lifecycle &&
+      npm install &&
       ng add @angular/material@13
   - command: >
       cd ./components/lifecycle &&
