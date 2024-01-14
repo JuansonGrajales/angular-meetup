@@ -6,7 +6,7 @@ tasks:
       cd /workspace/angular-meetup/components/lifecycle
       npm install
     command: |
-      ng add @angular/material@13.3.9 --defaults --skip-confirmation
+      ng add @angular/material@13.3.9
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 # ports:
