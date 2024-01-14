@@ -7,7 +7,6 @@ tasks:
       nvm install 14 && 
       nvm use 14 && 
       npm install -g @angular/cli@13 &&
-      ng new components --directory=./components/lifecycle --style=scss --routing=true &&
       cd ./components/lifecycle &&
       ng add @angular/material@13
   - command: >
