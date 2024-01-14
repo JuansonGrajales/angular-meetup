@@ -1,18 +1,11 @@
-image:
-  file: .gitpod.Dockerfile
-
-# List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
 tasks:
-  - init: >
-      nvm install 14 && 
-      nvm use 14 && 
-      npm install -g @angular/cli@13 &&
-      cd ./components/lifecycle &&
-      ng add @angular/material@13
-  - command: >
-      cd ./components/lifecycle &&
-      ng serve --open
-
+  - name: angular
+    init: |
+      npm install -g @angular/cli@13
+      cd /workspace/angular-meetup/components/lifecycle
+      npm install
+    command: |
+      ng add @angular/material@13.3.9 --defaults --skip-confirmation
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 # ports:
 #   - name: Frontend
