@@ -1,5 +1,5 @@
 export interface UserProfile {
-    username: string;
-    email: string;
-    age: number;
+    name: string;
+    favNumber: number;
+    favColor: string;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserProfile } from '../models/user-profile.model';
+import { UserDataService } from '../services/user-data.service';
 
 @Component({
   selector: 'app-child-component',
@@ -13,8 +14,10 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
   @Input() value: string = 'message';
   count: number = 0;
   userDataFormGroup!: FormGroup;
+  searchControl = new FormControl('');
+  selectedProfile: UserProfile | null = null;
 
-  constructor() {
+  constructor(private userDataService: UserDataService) {
     console.log("Constructor called!");
     // Will the input property value be updated? 
     // console.log(this.value);
@@ -32,7 +35,7 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
     this.userDataFormGroup = new FormGroup ({
       name: new FormControl(''),
       favNum: new FormControl(''),
-      email: new FormControl(''),
+      favColor: new FormControl(''),
     });
   }
   
@@ -62,7 +65,23 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 
   onSubmit() {
     console.log("on submit");
-    console.log(this.userDataFormGroup.get('age')?.value);
+    this.userDataService.userProfiles.push(
+      { name: this.userDataFormGroup.get('name')?.value,
+        favNumber: this.userDataFormGroup.get('favNum')?.value,
+        favColor: this.userDataFormGroup.get('favColor')?.value
+      }
+    );
+    this.userDataFormGroup.reset();
   }
-  
+
+  searchUser() {
+    const searchTerm = this.searchControl.value;
+    this.selectedProfile = this.getUserByName(searchTerm);
+  }
+
+  getUserByName(name: string): UserProfile | null {
+    return this.userDataService.userProfiles.find(
+      profile => profile.name.toLowerCase() === name.toLowerCase()
+      ) || null;
+  }
 }
