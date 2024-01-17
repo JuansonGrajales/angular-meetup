@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserProfile } from './models/user-profile.model';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'lifecycle';
 
-  inputText: string = "";
+  currentName: string = '';
 
-  onSubmit(inputEl: HTMLInputElement) {
-    this.inputText = inputEl.value;
+  handleProfileSubmission(profile: UserProfile) {
+    console.log('Profile received: ', profile);
+    // add it to the user data service
   }
 }

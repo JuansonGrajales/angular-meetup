@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserProfile } from '../models/user-profile.model';
 import { UserDataService } from '../services/user-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-child-component',
@@ -11,22 +12,24 @@ import { UserDataService } from '../services/user-data.service';
 export class ChildComponentComponent implements OnInit, OnChanges, DoCheck, 
 AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  @Input() value: string = 'message';
-  count: number = 0;
+  @Input() currentName: string = '';
+  @Output() profileSubmitted = new EventEmitter<UserProfile>();
+
   userDataFormGroup!: FormGroup;
   searchControl = new FormControl('');
   selectedProfile: UserProfile | null = null;
+  private searchSubscription: Subscription | null = null;
 
   constructor(private userDataService: UserDataService) {
-    console.log("Constructor called!");
+    // console.log("Constructor called!");
     // Will the input property value be updated? 
     // console.log(this.value);
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-    // this.count +1;
-    // console.log(this.count + ' ngOnChanges called!');
+    // console.log('ngOnChanges called!');
     console.log(changes);
+    
    }
 
   ngOnInit(): void {
@@ -63,25 +66,25 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
       // console.log('ngOnDestroyed called!');
   }
 
+  /**
+   * Submits the user data form and adds the new user profile to the userProfiles array.
+   */
   onSubmit() {
-    console.log("on submit");
-    this.userDataService.userProfiles.push(
-      { name: this.userDataFormGroup.get('name')?.value,
-        favNumber: this.userDataFormGroup.get('favNum')?.value,
-        favColor: this.userDataFormGroup.get('favColor')?.value
-      }
-    );
+    const userProfile = this.userDataFormGroup.value;
+    this.profileSubmitted.emit(userProfile);
+    // reset form after submission
     this.userDataFormGroup.reset();
   }
 
+  /**
+   * Searches for a user by name and sets the selectedProfile property to the found user profile.
+   */
   searchUser() {
-    const searchTerm = this.searchControl.value;
-    this.selectedProfile = this.getUserByName(searchTerm);
-  }
-
-  getUserByName(name: string): UserProfile | null {
-    return this.userDataService.userProfiles.find(
-      profile => profile.name.toLowerCase() === name.toLowerCase()
-      ) || null;
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+    this.searchSubscription = this.userDataService.getUserByName(this.searchControl.value)
+    .subscribe(profile => this.selectedProfile = profile);
+    this.searchControl.reset();
   }
 }

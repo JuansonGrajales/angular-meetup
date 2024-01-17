@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserProfile } from '../models/user-profile.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,14 @@ export class UserDataService {
     { name: 'Edward', favNumber: 33, favColor: 'Purple' }
   ]
   
-  constructor() { }
+  /**
+   * Gets a user profile by name
+   * @param name 
+   * @returns 
+   */
+  getUserByName(name: string): Observable<UserProfile | null> {
+    const foundUser = this.userProfiles.find(
+      user => user.name.toLowerCase() === name.toLowerCase()) || null;
+    return of(foundUser);
+  }
 }
