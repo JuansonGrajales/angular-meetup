@@ -1,3 +1,4 @@
+<h4>Current user name: {{ currentName }}</h4>
 <!-- User Data Form -->
 <mat-card class="full-width">
     <mat-card-title>Form</mat-card-title>
@@ -35,11 +36,10 @@
         </div>
     </mat-card-content>
   </mat-card>
-
+<!-- Show searched user -->
 <div *ngIf="selectedProfile">
     <p>Name: {{ selectedProfile.name }}</p>
     <p>Favorite Number: {{ selectedProfile.favNumber }}</p>
     <p>Favorite Color: {{ selectedProfile.favColor }}</p>
 </div>
-<ng-content></ng-content>
 

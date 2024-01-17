@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserProfile } from './models/user-profile.model';
+import { UserDataService } from './services/user-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { UserProfile } from './models/user-profile.model';
 export class AppComponent {
   title = 'lifecycle';
 
-  currentName: string = '';
+  currentName: string = 'This is the parent default value';
+
+  constructor(private userDataService: UserDataService) {}
 
   handleProfileSubmission(profile: UserProfile) {
     console.log('Profile received: ', profile);
-    // add it to the user data service
+    this.userDataService.userProfiles.push(profile);
+    this.currentName = profile.name;
   }
 }

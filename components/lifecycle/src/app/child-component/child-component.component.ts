@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ChildComponentComponent implements OnInit, OnChanges, DoCheck, 
 AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  @Input() currentName: string = '';
+  @Input() currentName!: string;
   @Output() profileSubmitted = new EventEmitter<UserProfile>();
 
   userDataFormGroup!: FormGroup;
@@ -28,8 +28,7 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 
    ngOnChanges(changes: SimpleChanges): void {
     // console.log('ngOnChanges called!');
-    console.log(changes);
-    
+    // console.log(changes);
    }
 
   ngOnInit(): void {

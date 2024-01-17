@@ -2,7 +2,5 @@
   <span>Angular Meetup</span>
 </mat-toolbar>
 <div class="container">
-  <app-child-component [currentName]="currentName" (profileSubmitted)="handleProfileSubmission($event)">
-    <h4>This is projected content by {{ currentName }}</h4>
-  </app-child-component>
+  <app-child-component [currentName]="currentName" (profileSubmitted)="handleProfileSubmission($event)"></app-child-component>
 </div>
