@@ -1,24 +1,27 @@
+<!-- User Data Form -->
 <mat-card class="full-width">
     <mat-card-title>Form</mat-card-title>
     <mat-card-content>
         <div class="form-container">
-            <mat-form-field class="full-width" appearance="fill">
-                <mat-label>username</mat-label>
-                <input matInput placeholder="username">
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="fill">
-                <mat-label>age</mat-label>
-                <input placeholder="age" matInput>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="fill">
-                <mat-label>email</mat-label>
-                <input placeholder="email" matInput>
-            </mat-form-field>
-            <button mat-raised-button color="primary">Submit</button>
+            <form [formGroup]="userDataFormGroup">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>name</mat-label>
+                    <input matInput placeholder="name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Favorite Number</mat-label>
+                    <input placeholder="Fav Num" matInput formControlName="favNum">
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>email</mat-label>
+                    <input placeholder="email" matInput formControlName="email">
+                </mat-form-field>
+            </form>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
         </div>
     </mat-card-content>
 </mat-card>
-<br>
+<br><!-- Search box -->
 <mat-card class="full-width">
     <mat-card-content>
         <div class="search-container">

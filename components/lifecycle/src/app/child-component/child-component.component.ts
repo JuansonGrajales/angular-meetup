@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { UserProfile } from '../models/user-profile.model';
 
 @Component({
@@ -11,6 +12,7 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 
   @Input() value: string = 'message';
   count: number = 0;
+  userDataFormGroup!: FormGroup;
 
   constructor() {
     console.log("Constructor called!");
@@ -20,37 +22,47 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 
    ngOnChanges(changes: SimpleChanges): void {
     // this.count +1;
-    console.log(this.count + ' ngOnChanges called!');
+    // console.log(this.count + ' ngOnChanges called!');
     console.log(changes);
    }
 
   ngOnInit(): void {
-    console.log('ngOnInit called!');
+    // console.log('ngOnInit called!');
     // console.log(this.value);
+    this.userDataFormGroup = new FormGroup ({
+      name: new FormControl(''),
+      favNum: new FormControl(''),
+      email: new FormControl(''),
+    });
   }
   
   ngDoCheck(): void {
-    console.log('ngDoCheck called!');
+    // console.log('ngDoCheck called!');
   }
 
   ngAfterContentInit(): void {
-    console.log('ngAfterContentInit called!');
+    // console.log('ngAfterContentInit called!');
   }
 
   ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked called!');
+    // console.log('ngAfterContentChecked called!');
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit called!');
+    // console.log('ngAfterViewInit called!');
   }
 
   ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked called!');
+    // console.log('ngAfterViewChecked called!');
   }
 
   ngOnDestroy(): void {
-      console.log('ngOnDestroyed called!');
+      // console.log('ngOnDestroyed called!');
+  }
+
+  onSubmit() {
+    console.log("on submit");
+    console.log(this.userDataFormGroup.get('age')?.value);
   }
   
 }
