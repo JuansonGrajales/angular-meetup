@@ -63,6 +63,9 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 
   ngOnDestroy(): void {
       // console.log('ngOnDestroyed called!');
+      if (this.searchSubscription) {
+        this.searchSubscription.unsubscribe;
+      }
   }
 
   /**
