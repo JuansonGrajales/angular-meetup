@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ChildComponentComponent implements OnInit, OnChanges, DoCheck, 
 AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  @Input() currentName!: string;
+  @Input() currentName: string = '';
   @Output() profileSubmitted = new EventEmitter<UserProfile>();
 
   userDataFormGroup!: FormGroup;
@@ -21,19 +21,19 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
   private searchSubscription: Subscription | null = null;
 
   constructor(private userDataService: UserDataService) {
-    // console.log("Constructor called!");
+    console.log("Constructor called!");
     // Will the input property value be updated? 
-    // console.log(this.value);
+    // console.log(this.currentName);
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-    // console.log('ngOnChanges called!');
+    console.log('ngOnChanges called!');
     // console.log(changes);
    }
 
   ngOnInit(): void {
-    // console.log('ngOnInit called!');
-    // console.log(this.value);
+    this.currentName = "Angular Meetup";
+    console.log('ngOnInit called!');
     this.userDataFormGroup = new FormGroup ({
       name: new FormControl(''),
       favNum: new FormControl(''),
@@ -42,23 +42,23 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
   }
   
   ngDoCheck(): void {
-    // console.log('ngDoCheck called!');
+    console.log('ngDoCheck called!');
   }
 
   ngAfterContentInit(): void {
-    // console.log('ngAfterContentInit called!');
+    console.log('ngAfterContentInit called!');
   }
 
   ngAfterContentChecked(): void {
-    // console.log('ngAfterContentChecked called!');
+    console.log('ngAfterContentChecked called!');
   }
 
   ngAfterViewInit(): void {
-    // console.log('ngAfterViewInit called!');
+    console.log('ngAfterViewInit called!');
   }
 
   ngAfterViewChecked(): void {
-    // console.log('ngAfterViewChecked called!');
+    console.log('ngAfterViewChecked called!');
   }
 
   ngOnDestroy(): void {

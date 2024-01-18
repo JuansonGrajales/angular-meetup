@@ -10,12 +10,12 @@ import { UserDataService } from './services/user-data.service';
 export class AppComponent {
   title = 'lifecycle';
 
-  currentName: string = 'This is the parent default value';
+  currentName: string = 'Ex. Maria';
 
   constructor(private userDataService: UserDataService) {}
 
   handleProfileSubmission(profile: UserProfile) {
-    console.log('Profile received: ', profile);
+    // console.log('Profile received: ', profile);
     this.userDataService.userProfiles.push(profile);
     this.currentName = profile.name;
   }
